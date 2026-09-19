@@ -1,0 +1,117 @@
+---
+title: "Claude Code Cheat Sheet: Commands and Quick Reference"
+sidebarTitle: "Cheat Sheets"
+description: "Quick-reference cheat sheet for Claude Code — essential commands, prompt patterns, keyboard shortcuts, and workflow tips all in one place."
+---
+
+Bookmark this page for fast access to the most important Claude Code commands and patterns. Whether you're mid-workshop or returning to a project weeks later, everything you need most often is organised here so you can keep moving without interrupting your flow.
+
+## Essential Commands
+
+Use these commands in your terminal to start, configure, and control Claude Code.
+
+```bash
+claude              # Start an interactive session
+claude "task"       # Run a one-off task from the command line
+claude --help       # Show all available flags and options
+claude --version    # Show installed version
+claude auth         # Authenticate with your Anthropic API key
+```
+
+<Note>
+  Run `claude auth` first if this is your initial setup. You'll need your Anthropic API key ready — see the [Setup Guide](/workshops/claude-code/setup) for step-by-step instructions.
+</Note>
+
+## Useful Prompt Patterns
+
+These prompt starters cover the most common tasks you'll reach for during everyday AI-assisted development. Copy and adapt them to your own codebase.
+
+<AccordionGroup>
+  <Accordion title='"Explain what this code does"' icon="magnifying-glass">
+    **Goal:** Understand unfamiliar code quickly.
+
+    Paste a function, module, or file and ask Claude to walk you through what it does, why each part exists, and any edge cases it handles. Great for onboarding to an existing codebase.
+
+    ```
+    Explain what this code does and highlight any non-obvious logic.
+    ```
+  </Accordion>
+
+  <Accordion title='"Find bugs in [file]"' icon="bug">
+    **Goal:** AI-assisted code review.
+
+    Ask Claude to scan a specific file or function for logic errors, edge cases, and potential runtime exceptions. Provide context about the expected behaviour for better results.
+
+    ```
+    Find bugs in [file]. The function is supposed to [expected behaviour].
+    ```
+  </Accordion>
+
+  <Accordion title='"Refactor [function] to be more readable"' icon="arrows-rotate">
+    **Goal:** Clean up tangled or verbose code.
+
+    Claude will restructure the code while preserving its behaviour — renaming variables, extracting helpers, and reducing nesting where appropriate.
+
+    ```
+    Refactor [function] to be more readable. Keep the same public interface.
+    ```
+  </Accordion>
+
+  <Accordion title='"Write tests for [function]"' icon="flask">
+    **Goal:** Generate a test suite quickly.
+
+    Specify the testing framework you're using (e.g. Jest, pytest, Vitest) and Claude will write unit tests covering the happy path and key edge cases.
+
+    ```
+    Write tests for [function] using [framework]. Cover edge cases and error states.
+    ```
+  </Accordion>
+
+  <Accordion title='"Add TypeScript types to [file]"' icon="code">
+    **Goal:** Annotate JavaScript with TypeScript types.
+
+    Claude will infer types from usage and add them inline. Mention whether you want strict mode or prefer looser typing where appropriate.
+
+    ```
+    Add TypeScript types to [file]. Use strict types where possible.
+    ```
+  </Accordion>
+
+  <Accordion title='"Create a [feature] following the patterns in [file]"' icon="wand-magic-sparkles">
+    **Goal:** Generate new code that fits your existing style.
+
+    Point Claude at a file that exemplifies your conventions and ask it to follow the same structure, naming, and patterns when building something new.
+
+    ```
+    Create a [feature] following the patterns and conventions used in [file].
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Keyboard Shortcuts
+
+These shortcuts work inside the Claude Code interactive REPL session.
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl+C` | Cancel the current operation |
+| `Ctrl+D` | Exit the session |
+| `↑` / `↓` Arrow keys | Navigate through prompt history |
+
+<Tip>
+  Press `↑` to recall your last prompt and edit it rather than retyping from scratch — a big time-saver when iterating on a task.
+</Tip>
+
+## Context Management Tips
+
+The quality of Claude's output rises directly with the quality of context you provide. Give Claude what it needs to act like a well-briefed team member.
+
+- **Name the files explicitly.** Instead of "this file", say "in `src/utils/auth.ts`". Claude will focus its attention precisely.
+- **Describe your tech stack.** Mention your framework, language version, and any key libraries (e.g. "Next.js 14 app using Prisma and TypeScript").
+- **Link related files.** If a function depends on a type defined elsewhere, mention that file too — Claude will respect the existing contract.
+- **State your constraints.** If you can't change the function signature or need to stay compatible with a specific API, say so upfront.
+- **Give expected behaviour.** For bug-finding or refactoring tasks, describe what the code *should* do so Claude has a reference point.
+
+<Tip>
+  Head to the [Tips & Tricks](/workshops/claude-code/tips-and-tricks) page for full explanations of each prompt pattern above, including real examples and before/after comparisons.
+</Tip>

@@ -1,17 +1,11 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "LYF x AI",
+  "projectType": "general",
+  "projectName": "LYF x AI Knowledge Base",
+  "projectDescription": "A public knowledge hub for LYF x AI covering their apps, workshops, and guides — helping customers get the most out of the tools and programs offered by the company.",
   "theme": "almond",
-  "colors": {
-    "primary": "#ef7025",
-    "light": "#eec9bc",
-    "dark": "#4fa1ab"
-  },
-  "favicon": "/favicon.svg",
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
   "navigation": {
     "tabs": [
       {
@@ -79,11 +73,13 @@
       }
     ]
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Get in Touch",
-      "href": "/about/contact"
-    }
-  }
+  "keyFeatures": [
+    "Public app documentation and usage guides",
+    "Claude Code workshop curriculum and materials",
+    "AI-focused workshops and training programs",
+    "Cheat sheets and quick-reference resources",
+    "Step-by-step hands-on exercises",
+    "FAQ and troubleshooting for apps and workshops"
+  ],
+  "publicApiSurface": []
 }

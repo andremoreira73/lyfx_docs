@@ -1,0 +1,73 @@
+---
+title: "Claude Code Core Concepts: How AI-Assisted Coding Works"
+sidebarTitle: "Core Concepts"
+description: "Learn the fundamental concepts behind Claude Code — how it reads your codebase, executes tasks, and reasons about code to help you ship faster."
+---
+
+Understanding how Claude Code works helps you use it more effectively. This page covers the core ideas that underpin everything Claude Code does — so that when something unexpected happens, you'll know why, and when you want better results, you'll know what to change.
+
+## Agentic Coding
+
+Most AI coding tools respond to questions. Claude Code takes actions.
+
+"Agentic" means Claude Code can operate with a degree of autonomy to complete a task end-to-end. Give it a goal, and it will read the relevant files, write or modify code, run commands to verify its work, and iterate based on the output — just like a developer would. You're not copy-pasting suggestions from a chat window; Claude is working *in* your project.
+
+This is a fundamentally different model from autocomplete or chat-based AI. It's more powerful, but it also means being intentional about the tasks you give it and the permissions you grant.
+
+## Key Concepts
+
+<AccordionGroup>
+  <Accordion title="Context Window" icon="window">
+    Claude Code reads your codebase and maintains context about your project structure, file contents, and recent changes throughout a session. When you start a session in a project directory, Claude can explore and index the relevant files to understand what your project does and how it's structured.
+
+    The context window has limits, so Claude is selective about what it loads. For large projects, it's helpful to point Claude toward the specific files or areas relevant to your task rather than asking it to understand the entire repo at once.
+  </Accordion>
+  <Accordion title="Tasks vs. Conversations" icon="list-check">
+    Claude Code is optimized for **concrete, actionable tasks** — not open-ended discussion. You'll get far better results with a clear directive than with a vague question.
+
+    - ✅ `"Add input validation to the signup form in components/SignupForm.jsx"`
+    - ✅ `"Find and fix the bug causing the 500 error in api/users.js"`
+    - ❌ `"How should I think about authentication?"` — use a chat interface for this instead
+
+    The more specific and self-contained your task, the more reliably Claude Code completes it in one pass.
+  </Accordion>
+  <Accordion title="Tool Use" icon="screwdriver-wrench">
+    Claude Code has access to a set of tools it can call to complete tasks:
+
+    - **File reading & writing** — read any file in your project, create new files, edit existing ones
+    - **Terminal commands** — run shell commands such as test suites, build scripts, or package managers
+    - **Web search** — look up documentation or error messages when needed
+
+    You control which tools Claude can use. Claude will always indicate which tools it intends to use, and you can restrict access if needed.
+  </Accordion>
+  <Accordion title="Iteration" icon="arrows-rotate">
+    Claude Code rarely gets things perfect on the first attempt — and it's designed not to. Like a developer, Claude follows a cycle: propose a solution, run it, observe the output, and refine. This loop often plays out multiple times within a single task.
+
+    This is actually a feature, not a limitation. It means Claude is testing its own work rather than handing you untested code. Watch the iteration loop in the exercises to understand when to intervene and when to let Claude work through it.
+  </Accordion>
+  <Accordion title="Permissions & Safety" icon="shield-check">
+    You stay in control at every step. Claude Code asks for confirmation before running commands that could have significant side effects — deleting files, making large-scale edits, or executing scripts with external effects.
+
+    You can configure how permissive Claude is:
+    - **Interactive mode** — Claude asks before every action (recommended for learning)
+    - **Auto-approve** — Claude proceeds without prompting (useful once you trust a workflow)
+
+    Start in interactive mode during the workshop so you can see every step Claude takes.
+  </Accordion>
+</AccordionGroup>
+
+## The REPL Loop
+
+Every interaction with Claude Code follows the same basic cycle:
+
+1. **You give a task** — describe what you want Claude to do in plain language
+2. **Claude plans** — Claude reads relevant files and outlines the steps it will take
+3. **Claude executes** — Claude performs the actions: writing code, running commands, editing files
+4. **Claude reports** — Claude summarizes what it did, what it found, and any issues encountered
+5. **You review** — you examine the changes, approve them, ask for revisions, or move on
+
+This loop repeats until the task is complete or you redirect Claude. The more clearly you communicate at step 1, the smoother the rest of the loop tends to go. Don't be afraid to interrupt mid-task if Claude is heading in the wrong direction — you can course-correct at any point.
+
+<Tip>
+  Ready to apply these concepts? Move on to the [Hands-On Exercises](/workshops/claude-code/hands-on-exercises) and start building with Claude Code right away.
+</Tip>

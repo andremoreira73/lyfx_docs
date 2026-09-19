@@ -1,0 +1,85 @@
+---
+title: "Claude Code Setup: Install and Configure Your Environment"
+sidebarTitle: "Setup"
+description: "Install Claude Code and configure your development environment before the workshop. This guide covers prerequisites, installation, and first-run verification."
+---
+
+Before the workshop begins, complete this setup guide so you're ready to code from the first exercise. The entire process takes about 10 minutes. If you run into issues, reach out before the session starts so we can help you troubleshoot without losing workshop time.
+
+## Prerequisites
+
+Make sure you have the following in place before installing Claude Code:
+
+- **Node.js 18+** — Claude Code is distributed as an npm package. Check your version with `node --version`. Download the latest LTS release from [nodejs.org](https://nodejs.org) if needed.
+- **An Anthropic API key** — Sign up and generate a key at [console.anthropic.com](https://console.anthropic.com). You'll need a paid or free-tier account.
+- **A terminal** — macOS Terminal, Windows Terminal (or WSL), or any Linux shell will work.
+- **A code editor** — VS Code is recommended for the best experience, but any editor works.
+
+## Install Claude Code
+
+<Steps>
+  <Step title="Open your terminal">
+    Launch your terminal application. On macOS, use Terminal or iTerm2. On Windows, use Windows Terminal with PowerShell or WSL. On Linux, use your preferred shell.
+  </Step>
+  <Step title="Install Claude Code globally via npm">
+    Run the following command to install Claude Code as a global package:
+
+    ```bash
+    npm install -g @anthropic-ai/claude-code
+    ```
+
+    The `-g` flag installs Claude Code globally so you can run it from any directory. This may take a minute to complete.
+  </Step>
+  <Step title="Verify the installation">
+    Confirm the installation succeeded by checking the version:
+
+    ```bash
+    claude --version
+    ```
+
+    You should see output like `claude/1.x.x` (the exact version number may differ). If the command isn't found, ensure your npm global bin directory is on your `PATH`.
+  </Step>
+  <Step title="Authenticate with your Anthropic API key">
+    Run the authentication command and follow the prompts:
+
+    ```bash
+    claude auth
+    ```
+
+    When prompted, paste your Anthropic API key. Claude Code will store it securely in your local configuration so you don't need to enter it again.
+  </Step>
+</Steps>
+
+## Verify Your Setup
+
+Run the help command to confirm everything is working correctly:
+
+```bash
+claude --help
+```
+
+You should see output similar to the following:
+
+```
+Usage: claude [options] [command]
+
+Anthropic's Claude Code - AI-powered coding assistant
+
+Options:
+  -V, --version    output the version number
+  -h, --help       display help for command
+
+Commands:
+  auth             Authenticate with your Anthropic API key
+  ...
+```
+
+If you see this output, your installation is complete and you're ready for the workshop.
+
+<Warning>
+  Never share your Anthropic API key publicly — don't paste it into chat messages, commit it to a repository, or include it in screenshots. If your key is ever exposed, revoke it immediately from the [Anthropic console](https://console.anthropic.com) and generate a new one.
+</Warning>
+
+<Tip>
+  You're all set! Head to the [Core Concepts](/workshops/claude-code/core-concepts) page to understand how Claude Code works before jumping into the exercises.
+</Tip>

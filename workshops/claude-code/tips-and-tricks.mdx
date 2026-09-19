@@ -1,0 +1,102 @@
+---
+title: "Claude Code Tips, Tricks, and Best Practices"
+sidebarTitle: "Tips & Tricks"
+description: "Get more out of Claude Code with proven tips and best practices — covering prompt writing, task scoping, workflow integration, and common pitfalls to avoid."
+---
+
+Once you know the basics, these tips will help you get significantly better results from Claude Code on real projects. The difference between a frustrating experience and a productive one often comes down to how you frame your tasks, how you scope your work, and how you integrate Claude into your existing workflow rather than bolting it on top.
+
+## Writing Better Tasks
+
+The single biggest factor in Claude Code's output quality is the quality of the task you give it. Vague tasks produce vague results. Specific tasks produce specific, actionable results.
+
+Here's the difference in practice:
+
+<Tabs>
+  <Tab title="❌ Too Vague">
+    ```
+    Fix the code
+    ```
+
+    Claude doesn't know which file, which bug, what "fix" means, or what the expected behavior should be. It will either ask several clarifying questions or make a guess that misses the mark.
+  </Tab>
+  <Tab title="✅ Specific & Actionable">
+    ```
+    The login function in auth.js throws a 401 error when the 
+    password contains special characters like ! or @. The 
+    password is being compared with bcrypt.compare(). Fix it 
+    so that special characters are handled correctly.
+    ```
+
+    Claude knows the file, the symptom, the location, the relevant function, and the expected outcome. It can go directly to work.
+  </Tab>
+</Tabs>
+
+A useful checklist when writing a task:
+- **Which file or function** is affected?
+- **What is the current behavior** (including any error messages)?
+- **What is the expected behavior?**
+- **Are there any constraints** (don't change the API, must work with Node 18, etc.)?
+
+## Scoping Your Work
+
+<AccordionGroup>
+  <Accordion title="Keep tasks focused" icon="crosshairs">
+    Claude Code works best on **well-defined, single-concern tasks**. "Refactor the entire backend" is not a task — it's a project. Break it into specific, sequential steps: refactor the database layer, then the service layer, then the API routes.
+
+    Focused tasks are also easier to review. When Claude changes three lines in one function, you can verify the change in 30 seconds. When it rewrites five files, the review becomes a project in itself.
+  </Accordion>
+  <Accordion title="Use a fresh session for new features" icon="rotate">
+    Context accumulates across a session. If you've spent an hour working on a payments feature and you suddenly ask Claude to help with the navigation bar, that payments context is still in the window — and it can subtly influence Claude's reasoning in unhelpful ways.
+
+    Start a new Claude Code session when switching to a different, unrelated feature or area of the codebase. Your sessions should be as single-purpose as your tasks.
+  </Accordion>
+  <Accordion title="Commit frequently" icon="code-commit">
+    Before letting Claude make large or wide-ranging changes, **commit your current working state**. This gives you a clean rollback point if Claude's changes introduce regressions or go in an unexpected direction.
+
+    A good rule of thumb: commit before any Claude task that touches more than one file, and commit after any Claude task whose results you're happy with. Treat Claude's changes like any other code — review them, run your tests, then commit.
+  </Accordion>
+</AccordionGroup>
+
+## Workflow Integration
+
+Claude Code works best when it's woven into your normal development flow rather than used as a separate "AI step" at the end.
+
+**Run Claude Code alongside your editor.** Keep a terminal with a Claude session open next to VS Code. When you hit a problem, switch to the terminal, describe it, and let Claude investigate while you stay oriented in the codebase.
+
+**Use Claude for code review.** Before opening a PR, ask Claude to check your own work:
+
+```
+Review this function for edge cases and potential bugs
+```
+
+Claude will often catch issues that are easy to miss when you're close to the code — off-by-one errors, missing null checks, unhandled promise rejections, and similar problems.
+
+**Use Claude for documentation.** Documentation is one of the highest-leverage uses of Claude Code because it's time-consuming but formulaic:
+
+```
+Write JSDoc comments for all exported functions in this file
+```
+
+Claude can generate accurate, consistent documentation in seconds for work that would take a developer much longer — and it reads the actual implementation rather than guessing.
+
+## Common Pitfalls
+
+<Warning>
+  Avoid these mistakes that can create problems in your project or workflow:
+
+  - **Never give Claude access to production credentials.** Don't paste `.env` files with live API keys, database passwords, or service tokens into a Claude session. Use test/development credentials for all workshop exercises.
+  - **Always review changes before committing.** Claude's code is a starting point, not finished work. Read every diff, run your tests, and apply your own judgment before pushing anything to a shared branch.
+  - **Don't use Claude to explain away errors without understanding them.** If Claude fixes a bug you don't understand, ask it to explain the root cause before moving on. Using Claude to make errors disappear without learning from them is how subtle, hard-to-debug issues accumulate over time.
+</Warning>
+
+## Keep Going
+
+<CardGroup cols={2}>
+  <Card title="Resources & Cheat Sheets" icon="book-open" href="/workshops/resources/cheat-sheets">
+    Quick-reference cheat sheets, useful prompts, and links to official Claude Code documentation.
+  </Card>
+  <Card title="Workshop FAQ" icon="circle-question" href="/workshops/resources/faq">
+    Answers to the most common questions from Claude Code workshop attendees.
+  </Card>
+</CardGroup>

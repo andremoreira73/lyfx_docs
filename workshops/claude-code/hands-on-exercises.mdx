@@ -1,0 +1,167 @@
+---
+title: "Claude Code Hands-On Exercises for the Workshop"
+sidebarTitle: "Exercises"
+description: "Practice using Claude Code with guided exercises — from simple file edits to building a small feature end-to-end with AI assistance."
+---
+
+These exercises are designed to build your confidence with Claude Code progressively. Start with Exercise 1 and work through them in order — each one introduces a new capability and builds on what came before. By the end, you'll have used Claude Code to explore a project, edit files, debug code, and build a feature from scratch.
+
+<Note>
+  Complete the [Setup guide](/workshops/claude-code/setup) before starting these exercises. You'll need Claude Code installed and authenticated with a working API key to follow along.
+</Note>
+
+## Exercise 1: Your First Task
+
+Get comfortable with the Claude Code interface by exploring a project and asking basic questions.
+
+<Steps>
+  <Step title="Open a terminal in any project directory">
+    Navigate to a project you have on your machine — it doesn't need to be anything special. If you don't have one handy, create a new folder and add a couple of files to it.
+
+    ```bash
+    cd ~/your-project
+    ```
+  </Step>
+  <Step title="Start an interactive Claude Code session">
+    Launch Claude Code in your project directory:
+
+    ```bash
+    claude
+    ```
+
+    Claude will start up, read your directory, and present a prompt waiting for your first task.
+  </Step>
+  <Step title="Ask Claude to explore your project">
+    Type the following task at the prompt:
+
+    ```
+    What files are in this project?
+    ```
+
+    Claude will scan your project structure and give you a summary — often with observations about what each part of the codebase does.
+  </Step>
+  <Step title="Ask a follow-up question">
+    Dig deeper with a follow-up. Try something like:
+
+    ```
+    What does the main entry point of this project do?
+    ```
+
+    Notice how Claude uses what it already read to answer without re-scanning from scratch.
+  </Step>
+</Steps>
+
+## Exercise 2: Edit a File
+
+Practice letting Claude make a real, reviewable change to a file in your project.
+
+<Steps>
+  <Step title="Ask Claude to read and summarize a file">
+    Point Claude at a specific file and ask it to explain what's there:
+
+    ```
+    Open README.md and summarize it
+    ```
+
+    If there's no README, ask Claude to summarize any file that exists in the project.
+  </Step>
+  <Step title="Ask Claude to make a simple edit">
+    Now ask Claude to add something useful:
+
+    ```
+    Add a 'Quick Start' section to the README with basic setup instructions
+    ```
+
+    Claude will propose the new content and show you exactly what it plans to change before writing anything.
+  </Step>
+  <Step title="Review the proposed changes">
+    Read through what Claude suggests. Notice that it shows you a diff — the original content alongside the proposed additions. This is your opportunity to redirect Claude if the tone, content, or placement isn't right.
+  </Step>
+  <Step title="Confirm to apply the edit">
+    If the changes look good, confirm and let Claude write them to the file. Open the file in your editor to see the result. If you'd like to adjust something, tell Claude what to change before confirming.
+  </Step>
+</Steps>
+
+## Exercise 3: Debug Code
+
+Give Claude a broken function and let it diagnose and fix the problem.
+
+<Steps>
+  <Step title="Create a file with a deliberate bug">
+    Create a new file called `utils.js` and paste in the following function — it has an intentional bug:
+
+    ```javascript
+    function calculateDiscount(price, discountPercent) {
+      const discount = price * discountPercent;
+      return price - discount;
+    }
+
+    console.log(calculateDiscount(100, 20)); // Should print 80, but prints -1900
+    ```
+  </Step>
+  <Step title="Ask Claude to find and fix the bug">
+    In your Claude Code session, run:
+
+    ```
+    This function isn't working correctly. Can you find and fix the bug?
+    ```
+
+    Claude will read the file, reason through the logic, identify that `discountPercent` should be divided by 100 (or expressed as a decimal), and propose a fix.
+  </Step>
+  <Step title="Review Claude's analysis">
+    Before accepting the fix, read Claude's explanation of why the bug occurred. Understanding *why* something was wrong is just as important as having it fixed — don't skip this step.
+  </Step>
+  <Step title="Apply the fix and verify it works">
+    Confirm the change, then run the file to verify:
+
+    ```bash
+    node utils.js
+    ```
+
+    You should now see `80` printed in the terminal.
+  </Step>
+</Steps>
+
+## Exercise 4: Build a Feature
+
+Give Claude a feature specification and let it write — and test — the implementation.
+
+<Steps>
+  <Step title="Ask Claude to implement a new function">
+    Start with a clear description of what you want:
+
+    ```
+    Add a function that validates an email address. It should return true for valid emails and false for invalid ones.
+    ```
+
+    Claude will ask clarifying questions if needed, or proceed directly with a plan. Review the plan before Claude starts coding.
+  </Step>
+  <Step title="Review Claude's implementation plan">
+    Claude will outline the approach — likely using a regular expression or a validation library. Make sure you're comfortable with the approach before proceeding. If you'd prefer a different implementation strategy, say so now.
+  </Step>
+  <Step title="Let Claude implement the function">
+    Approve the plan and let Claude write the code. It will create or update a file with the new function and show you the result.
+  </Step>
+  <Step title="Ask Claude to write a test">
+    Now push further:
+
+    ```
+    Write a unit test for the email validation function. Cover valid emails, invalid formats, and edge cases like empty strings.
+    ```
+
+    Claude will write a test file using whatever testing framework it detects in your project (or a simple assertion-based test if none is configured).
+  </Step>
+  <Step title="Run the test">
+    Ask Claude to run the test for you, or run it yourself:
+
+    ```bash
+    node test/validateEmail.test.js
+    ```
+
+    If any tests fail, ask Claude to investigate and fix the issue before moving on.
+  </Step>
+</Steps>
+
+<Tip>
+  Want to get even more out of Claude Code? Check out [Tips & Tricks](/workshops/claude-code/tips-and-tricks) for advanced techniques on writing better tasks, scoping your work, and integrating Claude into your daily workflow.
+</Tip>
